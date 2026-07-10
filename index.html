@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+    <title>CSBOX·CS1.6一站式直链下载平台</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --bg-primary: #0b0e14;
+            --bg-secondary: #111a24;
+            --bg-card: rgba(20, 32, 48, 0.6);
+            --bg-card-hover: rgba(28, 44, 64, 0.7);
+            --bg-about: linear-gradient(145deg, rgba(12, 24, 40, 0.9), rgba(6, 12, 22, 0.95));
+            --text-primary: #e8edf4;
+            --text-secondary: #b8cce0;
+            --text-muted: #6a8fb0;
+            --text-dim: #3a5a78;
+            --border-color: rgba(80, 180, 255, 0.06);
+            --border-hover: rgba(80, 180, 255, 0.18);
+            --accent: #8ac4ff;
+            --accent-glow: rgba(80, 180, 255, 0.04);
+            --shadow: 0 20px 60px -20px #000000cc;
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+            --hero-bg: radial-gradient(ellipse at 30% 20%, #0f1f30, #060a10 80%);
+            --hero-overlay: radial-gradient(circle at 70% 30%, rgba(80, 180, 255, 0.04), transparent 50%);
+            --code-bg: rgba(0, 0, 0, 0.25);
+            --tag-bg: rgba(0, 40, 80, 0.15);
+            --spec-bg: rgba(8, 20, 36, 0.5);
+            --cdkey-bg: rgba(0, 0, 0, 0.25);
+            --cdkey-border: rgba(80, 180, 255, 0.06);
+            --btn-primary: linear-gradient(135deg, #0066dd, #0088ff);
+            --btn-shadow: 0 0 20px rgba(0, 102, 221, 0.15);
+            --stat-num: #8ac4ff;
+            --stat-label: #4a7aa5;
+            --badge-bg: rgba(80, 180, 255, 0.06);
+            --badge-border: rgba(80, 180, 255, 0.06);
+            --badge-text: #6a8fb0;
+            --highlight-border: #4a8abb;
+            --highlight-bg: rgba(0, 60, 120, 0.08);
+            --map-card-bg: rgba(8, 20, 38, 0.4);
+            --map-card-hover: rgba(16, 34, 60, 0.6);
+            --footer-border: rgba(80, 180, 255, 0.03);
+            --footer-text: #2d5075;
+            --scrollbar-track: #0b0e14;
+            --scrollbar-thumb: #2a4a6a;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --section-bg: transparent;
+            --section-border: rgba(80, 180, 255, 0.04);
+            --block-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== 浅色主题 ===== */
+        [data-theme="light"] {
+            --bg-primary: #f2f7fc;
+            --bg-secondary: #e4edf5;
+            --bg-card: rgba(255, 255, 255, 0.6);
+            --bg-card-hover: rgba(255, 255, 255, 0.85);
+            --bg-about: linear-gradient(145deg, rgba(235, 245, 255, 0.85), rgba(215, 232, 250, 0.7));
+            --text-primary: #1a2a3a;
+            --text-secondary: #2a4a6a;
+            --text-muted: #5a8ab5;
+            --text-dim: #8ab0d0;
+            --border-color: rgba(60, 120, 200, 0.06);
+            --border-hover: rgba(60, 120, 200, 0.15);
+            --accent: #3a8abb;
+            --accent-glow: rgba(60, 120, 200, 0.04);
+            --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.04);
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --hero-bg: radial-gradient(ellipse at 30% 20%, #dce8f5, #c8d8ec 80%);
+            --hero-overlay: radial-gradient(circle at 70% 30%, rgba(60, 120, 200, 0.03), transparent 50%);
+            --code-bg: rgba(0, 0, 0, 0.02);
+            --tag-bg: rgba(60, 120, 200, 0.06);
+            --spec-bg: rgba(220, 235, 250, 0.4);
+            --cdkey-bg: rgba(0, 0, 0, 0.02);
+            --cdkey-border: rgba(60, 120, 200, 0.06);
+            --btn-primary: linear-gradient(135deg, #3a7aaa, #5a9ad0);
+            --btn-shadow: 0 0 20px rgba(58, 122, 170, 0.08);
+            --stat-num: #3a8abb;
+            --stat-label: #4a7aa5;
+            --badge-bg: rgba(60, 120, 200, 0.04);
+            --badge-border: rgba(60, 120, 200, 0.06);
+            --badge-text: #4a7aa5;
+            --highlight-border: #3a8abb;
+            --highlight-bg: rgba(60, 120, 200, 0.04);
+            --map-card-bg: rgba(220, 235, 250, 0.3);
+            --map-card-hover: rgba(200, 220, 245, 0.5);
+            --footer-border: rgba(60, 120, 200, 0.06);
+            --footer-text: #4a7aa5;
+            --scrollbar-track: #e4ecf5;
+            --scrollbar-thumb: #8ab0d0;
+            --section-bg: rgba(255, 255, 255, 0.2);
+            --section-border: rgba(60, 120, 200, 0.04);
+            --block-shadow: 0 8px 32px rgba(0, 0, 0, 0.02);
+        }
+
+        /* ===== Global ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+        body {
+            background: var(--bg-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.5;
+            transition: background var(--transition), color var(--transition);
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem 2rem;
+        }
+
+        /* ===== Top Nav ===== */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.4rem 2rem;
+            background: rgba(8, 11, 18, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            transition: background var(--transition), border-color var(--transition);
+            flex-wrap: wrap;
+            gap: 0.2rem;
+        }
+        [data-theme="light"] .top-nav {
+            background: rgba(242, 247, 252, 0.82);
+        }
+        .top-nav .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .top-nav .nav-brand {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+        .top-nav .nav-brand span {
+            color: var(--text-primary);
+            font-weight: 400;
+            transition: color var(--transition);
+        }
+        .top-nav .nav-links {
+            display: flex;
+            gap: 0.15rem;
+            flex-wrap: wrap;
+        }
+        .top-nav .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 40px;
+            transition: var(--transition);
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+        .top-nav .nav-links a:hover {
+            color: var(--accent);
+            background: var(--tag-bg);
+        }
+        .top-nav .nav-links a.active {
+            color: var(--accent);
+            background: var(--tag-bg);
+        }
+        .top-nav .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .top-nav .nav-actions .theme-toggle-wrap {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 40px;
+            padding: 0.05rem 0.15rem 0.05rem 0.4rem;
+            transition: background var(--transition), border-color var(--transition);
+            cursor: pointer;
+        }
+        .top-nav .nav-actions .theme-toggle-wrap .theme-label {
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            transition: color var(--transition);
+        }
+        .top-nav .nav-actions .theme-toggle-wrap .theme-btn {
+            background: var(--accent);
+            border: none;
+            color: #fff;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            font-size: 0.65rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(60, 180, 255, 0.15);
+        }
+        .top-nav .nav-actions .theme-toggle-wrap .theme-btn:hover {
+            transform: scale(1.05);
+        }
+        .top-nav .nav-actions button.lang-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.12rem 0.5rem;
+            border-radius: 40px;
+            font-size: 0.55rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+        .top-nav .nav-actions button.lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .top-nav .nav-actions button.lang-btn.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        /* ===== Fullscreen Hero ===== */
+        .fullscreen-hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            padding: 0 2rem;
+            background: var(--hero-bg);
+            transition: background var(--transition);
+            margin-top: 48px;
+        }
+        .fullscreen-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--hero-overlay);
+            pointer-events: none;
+            z-index: 1;
+            transition: background var(--transition);
+        }
+        .fullscreen-hero::after {
+            content: 'CSBOX';
+            position: absolute;
+            bottom: -6%;
+            right: -2%;
+            font-size: 22rem;
+            font-weight: 900;
+            letter-spacing: -10px;
+            color: rgba(60, 180, 255, 0.012);
+            pointer-events: none;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+            z-index: 0;
+            transition: color var(--transition);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            text-align: center;
+        }
+        .hero-content .hero-badge {
+            display: inline-block;
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            padding: 0.25rem 1.8rem;
+            border-radius: 60px;
+            font-size: 0.7rem;
+            color: var(--badge-text);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            backdrop-filter: blur(4px);
+            transition: var(--transition);
+        }
+        .hero-content .hero-badge .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .hero-content h1 {
+            font-size: 6.5rem;
+            font-weight: 900;
+            letter-spacing: -4px;
+            line-height: 1.02;
+            background: linear-gradient(135deg, #f0f8ff 15%, var(--accent) 50%, #3a8abb 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 80px rgba(60, 180, 255, 0.06);
+            transition: var(--transition);
+        }
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, #f5b342, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            margin: 0.3rem 0 0.1rem;
+            letter-spacing: 1.5px;
+            transition: color var(--transition);
+        }
+        .hero-content .feature-tag {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.25rem 1.6rem;
+            border-radius: 60px;
+            background: rgba(245, 180, 66, 0.08);
+            border: 1px solid rgba(245, 180, 66, 0.15);
+            color: #f5b342;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
+        }
+        .hero-content .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem 3rem;
+            margin: 1.2rem 0 1.4rem;
+        }
+        .hero-content .hero-stats .stat-item {
+            text-align: center;
+        }
+        .hero-content .hero-stats .stat-item .num {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--stat-num);
+            display: block;
+            text-shadow: 0 0 40px rgba(60, 180, 255, 0.10);
+            letter-spacing: -1px;
+            transition: color var(--transition);
+        }
+        .hero-content .hero-stats .stat-item .label {
+            font-size: 0.7rem;
+            color: var(--stat-label);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 0.05rem;
+            transition: color var(--transition);
+        }
+
+        /* 下载按钮 — 上 */
+        .hero-content .btn-hero-download {
+            display: inline-block;
+            background: var(--btn-primary);
+            color: #fff;
+            font-weight: 700;
+            padding: 0.75rem 3rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: var(--btn-shadow);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            margin-top: 0.2rem;
+            margin-bottom: 1.2rem;
+        }
+        .hero-content .btn-hero-download:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* 滚动提示 — 下 */
+        .hero-content .scroll-hint {
+            display: block;
+            color: var(--text-dim);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            animation: floatDown 2.2s ease-in-out infinite;
+            opacity: 0.5;
+            transition: color var(--transition);
+            margin-top: 0;
+            padding-top: 0;
+        }
+        @keyframes floatDown {
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateY(8px);
+                opacity: 0.9;
+            }
+        }
+
+        /* ===== Section Blocks ===== */
+        .section-block {
+            margin: 2.5rem 0 2rem;
+            scroll-margin-top: 5rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            background: var(--section-bg);
+            border-radius: 1.8rem;
+            padding: 1.5rem 2rem;
+            border: 1px solid var(--section-border);
+            box-shadow: var(--block-shadow);
+            backdrop-filter: blur(2px);
+            transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), opacity 0.8s ease, transform 0.8s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .section-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-block .block-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+            transition: border-color var(--transition);
+            flex-shrink: 0;
+        }
+        .section-block .block-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: -0.5px;
+            transition: color var(--transition);
+        }
+        .section-block .block-header .badge {
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            padding: 0.05rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.65rem;
+            color: var(--badge-text);
+            font-weight: 400;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .section-block .block-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-color), transparent);
+            transition: background var(--transition);
+        }
+        .section-block .block-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== About Block ===== */
+        .about-block {
+            background: var(--bg-about);
+            border-radius: 1.8rem;
+            padding: 2rem 2.5rem;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .about-block::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+            pointer-events: none;
+            transition: background var(--transition);
+        }
+        .about-block .about-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 1.8rem;
+            align-items: stretch;
+        }
+        .about-block .about-text p {
+            color: var(--text-secondary);
+            font-weight: 300;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+            transition: color var(--transition);
+        }
+        .about-block .about-text p strong {
+            color: var(--text-primary);
+            font-weight: 600;
+            transition: color var(--transition);
+        }
+        .about-block .about-text .highlight-line {
+            color: var(--accent);
+            font-weight: 400;
+            border-left: 3px solid var(--highlight-border);
+            padding-left: 1rem;
+            margin: 0.6rem 0;
+            font-size: 0.85rem;
+            transition: color var(--transition), border-color var(--transition);
+        }
+        .about-block .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            align-content: center;
+        }
+        .about-block .about-stats .stat-card {
+            background: var(--code-bg);
+            border-radius: 0.8rem;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: background var(--transition), border-color var(--transition);
+        }
+        .about-block .about-stats .stat-card .num {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--stat-num);
+            transition: color var(--transition);
+        }
+        .about-block .about-stats .stat-card .label {
+            font-size: 0.55rem;
+            color: var(--stat-label);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color var(--transition);
+        }
+        .about-block .about-stats .stat-card .sub {
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            margin-top: 0.05rem;
+            transition: color var(--transition);
+        }
+        .about-block .about-stats .stat-card.highlight {
+            border-color: var(--highlight-border);
+            background: var(--highlight-bg);
+        }
+        .about-block .esports-line {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1rem;
+            background: var(--code-bg);
+            border-radius: 0.8rem;
+            padding: 0.5rem 1rem;
+            margin-top: 0.6rem;
+            border: 1px solid var(--border-color);
+            transition: background var(--transition), border-color var(--transition);
+        }
+        .about-block .esports-line .es-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .about-block .esports-line .es-item .flag {
+            font-size: 1rem;
+        }
+        .about-block .esports-line .es-item .name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.75rem;
+            transition: color var(--transition);
+        }
+        .about-block .esports-line .es-item .desc {
+            color: var(--text-muted);
+            font-size: 0.62rem;
+            transition: color var(--transition);
+        }
+
+        /* ===== Downloads — 重点放大 ===== */
+        .downloads-section .block-header h2 {
+            font-size: 2.2rem;
+        }
+        .downloads-section .block-body {
+            gap: 0.8rem;
+        }
+
+        .collection {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .collection:last-child {
+            margin-bottom: 0;
+        }
+        .collection-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.15rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            transition: color var(--transition), border-color var(--transition);
+            flex-shrink: 0;
+        }
+        .collection-title .count {
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: var(--stat-label);
+            background: var(--tag-bg);
+            padding: 0.05rem 0.6rem;
+            border-radius: 40px;
+            transition: color var(--transition), background var(--transition);
+        }
+
+        /* 经典版本 3列 */
+        .collection-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            flex: 1;
+            align-content: start;
+        }
+
+        /* 个人定制版 6个 → 3-3 排列 */
+        .collection-grid-6 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            flex: 1;
+            align-content: start;
+        }
+
+        /* ===== Version Card — 放大 ===== */
+        .version-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(6px);
+            border-radius: 1rem;
+            padding: 1rem 1.2rem 0.9rem;
+            border: 1px solid var(--border-color);
+            transition: all var(--transition);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: stretch;
+            height: 100%;
+        }
+        .version-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        .version-card .v-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 6px;
+            width: 100%;
+        }
+        .version-card .v-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.2px;
+            transition: color var(--transition);
+            flex: 1;
+        }
+        .version-card .v-ver {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            background: var(--tag-bg);
+            padding: 0.05rem 0.6rem;
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            white-space: nowrap;
+            transition: color var(--transition), background var(--transition), border-color var(--transition);
+            flex-shrink: 0;
+        }
+        .version-card .v-desc {
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+            font-weight: 300;
+            margin: 4px 0 6px;
+            line-height: 1.4;
+            flex: 1;
+            transition: color var(--transition);
+        }
+        .version-card .v-tag {
+            display: inline-block;
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            background: var(--tag-bg);
+            padding: 0.05rem 0.6rem;
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            align-self: flex-start;
+            margin-bottom: 4px;
+            transition: color var(--transition), background var(--transition), border-color var(--transition);
+        }
+        .version-card .v-tag.recommend {
+            color: #f5b342;
+            background: rgba(245, 180, 66, 0.08);
+            border-color: rgba(245, 180, 66, 0.08);
+        }
+        .version-card .dl-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 6px;
+            transition: border-color var(--transition);
+            width: 100%;
+        }
+
+        .btn-dl {
+            display: inline-block;
+            background: var(--btn-primary);
+            color: #fff;
+            font-weight: 600;
+            padding: 0.2rem 0.9rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-size: 0.65rem;
+            transition: var(--transition);
+            box-shadow: var(--btn-shadow);
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-dl:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+        .btn-dl.outline {
+            background: transparent;
+            box-shadow: none;
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted);
+        }
+        .btn-dl.outline:hover {
+            background: var(--tag-bg);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .dl-meta {
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            letter-spacing: 0.2px;
+            transition: color var(--transition);
+            white-space: nowrap;
+        }
+
+        /* ===== Map Guide — 电脑端3列，手机端2列 ===== */
+        .map-guide-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            flex: 1;
+            align-content: start;
+        }
+        .map-guide-card {
+            background: var(--map-card-bg);
+            border-radius: 0.9rem;
+            padding: 0.9rem 1rem;
+            border: 1px solid var(--border-color);
+            transition: background var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            height: 100%;
+        }
+        .map-guide-card:hover {
+            border-color: var(--border-hover);
+            background: var(--map-card-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow);
+        }
+        .map-guide-card .mode-icon {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            transition: color var(--transition);
+        }
+        .map-guide-card .mode-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin-top: 1px;
+            transition: color var(--transition);
+        }
+        .map-guide-card .mode-desc {
+            color: var(--text-secondary);
+            font-size: 0.68rem;
+            font-weight: 300;
+            margin: 3px 0 4px;
+            line-height: 1.4;
+            transition: color var(--transition);
+            flex: 1;
+        }
+        .map-guide-card .mode-maps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.15rem 0.3rem;
+            margin-top: 3px;
+            width: 100%;
+        }
+        .map-guide-card .mode-maps span {
+            background: var(--tag-bg);
+            padding: 0.05rem 0.5rem;
+            border-radius: 40px;
+            font-size: 0.52rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            transition: background var(--transition), color var(--transition), border-color var(--transition);
+            white-space: nowrap;
+        }
+        .map-guide-card.highlight-card {
+            border-color: var(--highlight-border);
+            background: var(--highlight-bg);
+        }
+        .map-guide-card.highlight-card .mode-maps span {
+            background: var(--highlight-bg);
+            border-color: var(--highlight-border);
+            color: var(--accent);
+        }
+        .map-quote {
+            background: var(--code-bg);
+            border-radius: 0.8rem;
+            padding: 0.4rem 1rem;
+            margin-top: 0.6rem;
+            border-left: 3px solid var(--highlight-border);
+            transition: background var(--transition), border-color var(--transition);
+            flex-shrink: 0;
+        }
+        .map-quote p {
+            color: var(--text-secondary);
+            font-style: italic;
+            font-weight: 300;
+            font-size: 0.72rem;
+            transition: color var(--transition);
+        }
+
+        /* ===== Resource / Companion Files ===== */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            flex: 1;
+            align-content: start;
+        }
+        .resource-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(6px);
+            border-radius: 1rem;
+            padding: 0.8rem 1rem 0.7rem;
+            border: 1px solid var(--border-color);
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: stretch;
+            height: 100%;
+        }
+        .resource-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        .resource-card .r-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: color var(--transition);
+        }
+        .resource-card .r-desc {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin: 2px 0 4px;
+            transition: color var(--transition);
+        }
+        .resource-card .r-tag {
+            font-size: 0.48rem;
+            color: var(--text-muted);
+            background: var(--tag-bg);
+            padding: 0.05rem 0.5rem;
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            align-self: flex-start;
+            margin-bottom: 4px;
+            transition: color var(--transition), background var(--transition), border-color var(--transition);
+        }
+        .resource-card .dl-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 6px;
+            transition: border-color var(--transition);
+            width: 100%;
+        }
+
+        /* ===== 配套文件使用指南 ===== */
+        .install-guide-box {
+            background: var(--code-bg);
+            border-radius: 1rem;
+            padding: 1.2rem 1.5rem;
+            margin-top: 0.8rem;
+            border: 2px solid var(--highlight-border);
+            transition: background var(--transition), border-color var(--transition);
+            flex-shrink: 0;
+        }
+        .install-guide-box .guide-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .install-guide-box .guide-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem 1.2rem;
+        }
+        .install-guide-box .guide-steps .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .install-guide-box .guide-steps .step .step-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        .install-guide-box .guide-steps .step .step-text {
+            color: var(--text-secondary);
+            font-weight: 400;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            transition: color var(--transition);
+        }
+        .install-guide-box .guide-steps .step .step-text code {
+            background: var(--tag-bg);
+            padding: 0.05rem 0.4rem;
+            border-radius: 0.3rem;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        /* ===== Specs & CDKEY ===== */
+        .specs-cdkey-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            flex: 1;
+            align-items: stretch;
+        }
+        .specs-block {
+            background: var(--spec-bg);
+            border-radius: 1.3rem;
+            padding: 1.2rem 1.6rem;
+            border: 1px solid var(--border-color);
+            transition: background var(--transition), border-color var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            height: 100%;
+        }
+        .specs-block .spec-item {
+            width: 100%;
+        }
+        .specs-block .spec-item:last-child {
+            margin-bottom: 0;
+        }
+        .specs-block .spec-item h4 {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            margin-bottom: 0.15rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color var(--transition);
+        }
+        .specs-block .spec-item ul {
+            list-style: none;
+            color: var(--text-secondary);
+            font-weight: 300;
+            font-size: 0.72rem;
+            transition: color var(--transition);
+            padding: 0;
+        }
+        .specs-block .spec-item ul li {
+            padding: 0.05rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+        .specs-block .spec-item ul li::before {
+            content: "▹ ";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            transition: color var(--transition);
+        }
+
+        .cdkey-section {
+            background: var(--spec-bg);
+            border-radius: 1.3rem;
+            padding: 1.2rem 1.6rem;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: background var(--transition), border-color var(--transition);
+            height: 100%;
+        }
+        .cdkey-section .cdkey-label {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            transition: color var(--transition);
+        }
+        .cdkey-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .cdkey-item {
+            background: var(--cdkey-bg);
+            border: 1px solid var(--cdkey-border);
+            border-radius: 0.6rem;
+            padding: 0.3rem 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            user-select: none;
+            position: relative;
+        }
+        .cdkey-item .cdkey-blur {
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            font-size: 0.6rem;
+            transition: color var(--transition), filter var(--transition);
+            filter: blur(3px);
+            opacity: 0.7;
+        }
+        .cdkey-item:hover .cdkey-blur {
+            filter: blur(0px);
+            opacity: 1;
+            color: var(--accent);
+        }
+        .cdkey-item .copy-hint {
+            font-size: 0.45rem;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            opacity: 0.4;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+        .cdkey-item:hover .copy-hint {
+            opacity: 0.8;
+            color: var(--accent);
+        }
+        .cdkey-item .copied-feedback {
+            font-size: 0.45rem;
+            color: #6fb0a0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            display: none;
+            letter-spacing: 0.5px;
+        }
+        .cdkey-item.copied .copied-feedback {
+            display: inline;
+        }
+        .cdkey-item.copied .copy-hint {
+            display: none;
+        }
+        .cdkey-item.copied .cdkey-blur {
+            filter: blur(0px);
+            opacity: 1;
+            color: var(--text-primary);
+        }
+        .cdkey-hint {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+            transition: color var(--transition);
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            color: var(--footer-text);
+            border-top: 1px solid var(--footer-border);
+            padding-top: 1.2rem;
+            font-size: 0.65rem;
+            transition: color var(--transition), border-color var(--transition);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================================ */
+        /* ===== Responsive ===== */
+        @media (max-width: 992px) {
+            .about-block .about-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .specs-cdkey-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-block {
+                padding: 1.2rem 1.5rem;
+            }
+            .about-block {
+                padding: 1.5rem 1.8rem;
+            }
+            .hero-content h1 {
+                font-size: 4.8rem;
+            }
+            .fullscreen-hero::after {
+                font-size: 16rem;
+            }
+            .resource-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .install-guide-box .guide-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem 1.2rem;
+            }
+            .fullscreen-hero {
+                min-height: 460px;
+                padding: 0 1rem;
+                margin-top: 56px;
+                height: auto;
+                min-height: 400px;
+                padding: 2.5rem 1rem;
+            }
+            .hero-content h1 {
+                font-size: 3.2rem;
+                letter-spacing: -1px;
+            }
+            .hero-content .subtitle {
+                font-size: 1.1rem;
+            }
+            .hero-content .feature-tag {
+                font-size: 0.7rem;
+                padding: 0.15rem 1rem;
+            }
+            .hero-content .hero-stats {
+                gap: 0.5rem 1.2rem;
+            }
+            .hero-content .hero-stats .stat-item .num {
+                font-size: 1.8rem;
+            }
+            .hero-content .btn-hero-download {
+                font-size: 0.9rem;
+                padding: 0.6rem 2.2rem;
+                margin-bottom: 0.8rem;
+            }
+            .hero-content .scroll-hint {
+                font-size: 0.6rem;
+            }
+            .fullscreen-hero::after {
+                font-size: 10rem;
+                bottom: -5%;
+                right: -8%;
+            }
+            .section-block .block-header h2 {
+                font-size: 1.3rem;
+            }
+            .section-block {
+                padding: 0.8rem 1rem;
+                margin: 1.8rem 0 1.2rem;
+            }
+            .about-block {
+                padding: 1rem 1.2rem;
+            }
+            .about-block .about-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .map-guide-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .collection-grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .collection-grid-6 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .version-card {
+                padding: 0.6rem 0.8rem 0.6rem;
+            }
+            .version-card .v-name {
+                font-size: 0.85rem;
+            }
+            .version-card .v-desc {
+                font-size: 0.62rem;
+            }
+            .btn-dl {
+                font-size: 0.55rem;
+                padding: 0.12rem 0.5rem;
+            }
+            .specs-block {
+                padding: 0.8rem 1rem;
+            }
+            .cdkey-section {
+                padding: 0.8rem 1rem;
+            }
+            .resource-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cdkey-item {
+                font-size: 0.5rem;
+                padding: 0.2rem 0.6rem;
+            }
+            .cdkey-item .cdkey-blur {
+                font-size: 0.5rem;
+            }
+            .top-nav {
+                padding: 0.3rem 0.8rem;
+                gap: 0.2rem;
+            }
+            .top-nav .nav-brand {
+                font-size: 0.8rem;
+            }
+            .top-nav .nav-links a {
+                font-size: 0.55rem;
+                padding: 0.1rem 0.4rem;
+            }
+            .top-nav .nav-actions {
+                gap: 0.3rem;
+            }
+            .top-nav .nav-actions .theme-toggle-wrap .theme-label {
+                display: none;
+            }
+            .top-nav .nav-actions .theme-toggle-wrap {
+                padding: 0.05rem 0.05rem 0.05rem 0.15rem;
+            }
+            .top-nav .nav-actions button.lang-btn {
+                font-size: 0.5rem;
+                padding: 0.1rem 0.4rem;
+            }
+            .install-guide-box .guide-steps {
+                grid-template-columns: 1fr;
+            }
+            .install-guide-box .guide-steps .step .step-text {
+                font-size: 0.75rem;
+            }
+            .downloads-section .block-header h2 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .map-guide-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .collection-grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .collection-grid-6 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .hero-content .subtitle {
+                font-size: 0.9rem;
+            }
+            .hero-content .hero-stats .stat-item .num {
+                font-size: 1.4rem;
+            }
+            .hero-content .btn-hero-download {
+                font-size: 0.8rem;
+                padding: 0.5rem 1.8rem;
+                margin-bottom: 0.6rem;
+            }
+            .about-block .about-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            .about-block .about-stats .stat-card .num {
+                font-size: 1.1rem;
+            }
+            .specs-cdkey-grid {
+                grid-template-columns: 1fr;
+            }
+            .top-nav .nav-brand {
+                font-size: 0.7rem;
+            }
+            .top-nav .nav-links a {
+                font-size: 0.5rem;
+                padding: 0.08rem 0.3rem;
+            }
+            .top-nav .nav-actions button.lang-btn {
+                font-size: 0.45rem;
+                padding: 0.08rem 0.3rem;
+            }
+            .section-block {
+                padding: 0.6rem 0.8rem;
+            }
+            .about-block {
+                padding: 0.8rem 1rem;
+            }
+            .install-guide-box {
+                padding: 0.8rem 1rem;
+            }
+            .install-guide-box .guide-title {
+                font-size: 0.9rem;
+            }
+            .install-guide-box .guide-steps .step .step-text {
+                font-size: 0.7rem;
+            }
+            .downloads-section .block-header h2 {
+                font-size: 1.3rem;
+            }
+            .version-card .v-name {
+                font-size: 0.78rem;
+            }
+            .version-card .v-desc {
+                font-size: 0.58rem;
+            }
+            .version-card .v-ver {
+                font-size: 0.5rem;
+                padding: 0.03rem 0.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Top Navigation ===== -->
+    <nav class="top-nav" id="topNav">
+        <div class="nav-left">
+            <a href="#top" class="nav-brand" data-i18n="brand">CSBOX<span> · 直链下载</span></a>
+            <div class="nav-links">
+                <a href="#about" data-i18n="navAbout">关于</a>
+                <a href="#downloads" data-i18n="navDownload">下载</a>
+                <a href="#maps" data-i18n="navMaps">地图</a>
+                <a href="#resources" data-i18n="navResource">配套</a>
+                <a href="#specs" data-i18n="navSpecs">配置</a>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <div class="theme-toggle-wrap" id="themeToggleWrap">
+                <span class="theme-label" id="themeLabel">🌙 深色</span>
+                <button class="theme-btn" id="themeToggle" aria-label="切换主题">🌓</button>
+            </div>
+            <button class="lang-btn active" id="langZh" data-lang="zh">中文</button>
+            <button class="lang-btn" id="langEn" data-lang="en">EN</button>
+        </div>
+    </nav>
+
+    <!-- ===== Fullscreen Hero ===== -->
+    <section class="fullscreen-hero" id="top">
+        <div class="hero-content">
+            <div class="hero-badge" data-i18n="heroBadge">⚡ <span class="highlight">直链下载</span> · 无需注册 · 无需登录</div>
+            <h1>CS<span class="highlight">BOX</span></h1>
+            <p class="subtitle" data-i18n="heroSubtitle">CS1.6 一站式直链下载平台</p>
+            <div class="feature-tag">
+                <span class="icon">⬇</span> <span data-i18n="heroFeature">9 个经典版本 · 即点即下</span>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item"><span class="num" data-i18n="stat1num">9</span><span class="label" data-i18n="stat1label">经典版本</span></div>
+                <div class="stat-item"><span class="num" data-i18n="stat2num">300+</span><span class="label" data-i18n="stat2label">地图合集</span></div>
+                <div class="stat-item"><span class="num" data-i18n="stat3num">100+</span><span class="label" data-i18n="stat3label">插件库</span></div>
+                <div class="stat-item"><span class="num" data-i18n="stat4num">2026</span><span class="label" data-i18n="stat4label">重温经典</span></div>
+            </div>
+            <!-- 按钮在上 -->
+            <a href="#downloads" class="btn-hero-download" data-i18n="heroBtn">⬇ 进入下载板块</a>
+            <!-- 滚动提示在下 -->
+            <span class="scroll-hint" data-i18n="scrollHint">▼ 向下探索 ▼</span>
+        </div>
+    </section>
+
+    <!-- ===== Main Content ===== -->
+    <div class="container">
+
+        <!-- ============================================================ -->
+        <!-- Section 1: About CS1.6 -->
+        <div class="section-block" id="about">
+            <div class="block-header">
+                <h2 data-i18n="aboutTitle">关于 CS1.6</h2>
+                <span class="badge" data-i18n="aboutBadge">2003 – 2026</span>
+            </div>
+            <div class="about-block">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p data-i18n="aboutP1">
+                            <strong>Counter-Strike 1.6</strong> 是 Valve 于 2003 年 9 月 12 日正式发行的第一人称射击游戏，
+                            从《半条命》MOD 成长为独立的电竞传奇。它定义了战术射击游戏的黄金标准——
+                            <strong>精密的枪械弹道、极致的经济博弈、经典的 5v5 爆破模式</strong>，
+                            成为全球数亿玩家的青春记忆。
+                        </p>
+                        <div class="highlight-line" data-i18n="aboutHighlight">
+                            ⚡ 1.6 版本修复了空中开镜 BUG，新增 FAMAS / Galil / 防暴盾，调整 AWP 开镜速度，
+                            极大增强了竞技公平性，成为全球赛事的统一标准。
+                        </div>
+                        <p style="font-size:0.8rem; margin-top:0.3rem;" data-i18n="aboutP2">
+                            💡 即使在今天，CS1.6 依然拥有庞大的玩家社区和活跃的赛事生态，
+                            是 FPS 游戏史上不可磨灭的丰碑。
+                        </p>
+                        <div class="esports-line">
+                            <span class="es-item"><span class="flag">🏅</span><span class="name" data-i18n="esportsTitle">电竞丰碑</span></span>
+                            <span class="es-item"><span class="flag">🇨🇳</span><span class="name">wNv</span><span class="desc" data-i18n="esports1">2005 WEG 冠军</span></span>
+                            <span class="es-item"><span class="flag">🇸🇪</span><span class="name">fnatic</span><span class="desc" data-i18n="esports2">2009 六冠王</span></span>
+                            <span class="es-item"><span class="flag">🇵🇱</span><span class="name">NEO</span><span class="desc" data-i18n="esports3">WCG 三冠王</span></span>
+                            <span class="es-item"><span class="flag">🇺🇦</span><span class="name">NaVi</span><span class="desc" data-i18n="esports4">2010 统治级</span></span>
+                            <span class="es-item"><span class="flag">🇰🇷</span><span class="name">WeMade FOX</span><span class="desc" data-i18n="esports5">亚洲之光</span></span>
+                        </div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card highlight">
+                            <div class="num" data-i18n="statYear">2003</div>
+                            <div class="label" data-i18n="statYearLabel">正式发行</div>
+                            <div class="sub" data-i18n="statYearSub">独立于《半条命》</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="num" data-i18n="statMaps">16</div>
+                            <div class="label" data-i18n="statMapsLabel">官方地图</div>
+                            <div class="sub" data-i18n="statMapsSub">+ 数百张社区图</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="num" data-i18n="statChars">8</div>
+                            <div class="label" data-i18n="statCharsLabel">CT / T 角色</div>
+                            <div class="sub" data-i18n="statCharsSub">各具特色</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="num" data-i18n="statMoney">2026</div>
+                            <div class="label" data-i18n="statMoneyLabel">经典重温</div>
+                            <div class="sub" data-i18n="statMoneySub">再现当年辉煌</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 2: Downloads -->
+        <div class="section-block downloads-section" id="downloads">
+            <div class="block-header">
+                <h2 data-i18n="downloadTitle">⬇ 版本下载</h2>
+                <span class="badge" data-i18n="downloadBadge">9 个版本</span>
+            </div>
+            <div class="block-body">
+
+                <!-- 经典版本 3列 -->
+                <div class="collection">
+                    <div class="collection-title" data-i18n="classicTitle">◈ 经典版本 <span class="count">3 个版本</span></div>
+                    <div class="collection-grid-3">
+                        <div class="version-card">
+                            <div>
+                                <div class="v-header"><span class="v-name" data-i18n="vSteamName">Steam 原生提取版</span><span class="v-ver">4544</span></div>
+                                <div class="v-desc" data-i18n="vSteamDesc">Steam原生 · 带Bot · 汉化补丁</div>
+                                <span class="v-tag recommend" data-i18n="vSteamTag">★ 官方原生</span>
+                            </div>
+                            <div class="dl-row">
+                                <a href="https://github.com/ZYWind-ZYWPE/csbox/raw/2bd6c327d95f6ec8ae9e5afced585d11f0424fa9/%E8%8B%B1%E6%96%87%E7%BA%AF%E5%87%80%E7%89%884544_%E5%B8%A6%E6%B1%89%E5%8C%96%E8%A1%A5%E4%B8%81.zip" target="_blank" class="btn-dl">⬇ <span data-i18n="downloadBtn">下载</span></a>
+                                <span class="dl-meta">4544</span>
+                            </div>
+                        </div>
+                        <div class="version-card">
+                            <div>
+                                <div class="v-header"><span class="v-name" data-i18n="v5eName">5EPlay</span><span class="v-ver">双协议</span></div>
+                                <div class="v-desc" data-i18n="v5eDesc">5E平台 · 双协议 · 带Bot</div>
+                                <span class="v-tag" data-i18n="v5eTag"># 平台竞技</span>
+                            </div>
+                            <div class="dl-row">
+                                <a href="https://github.com/ZYWind-ZYWPE/csbox/raw/2bd6c327d95f6ec8ae9e5afced585d11f0424fa9/5ePlay_cs1.6%E5%8F%8C%E5%8D%8F%E8%AE%AE%E5%B8%A6bot.zip" target="_blank" class="btn-dl">⬇ <span data-i18n="downloadBtn">下载</span></a>
+                                <span class="dl-meta">5EPlay</span>
+                            </div>
+                        </div>
+                        <div class="version-card">
+                            <div>
+                                <div class="v-header"><span class="v-name" data-i18n="vEsaiName">亿赛 Esai</span><span class="v-ver">3248</span></div>
+                                <div class="v-desc" data-i18n="vEsaiDesc">比赛级稳定 · 经典纯净 · 中文</div>
+                                <span class="v-tag recommend" data-i18n="vEsaiTag">★ 最推荐</span>
+                            </div>
+                            <div class="dl-row">
+                                <a href="https://github.com/ZYWind-ZYWPE/csbox/raw/2bd6c327d95f6ec8ae9e5afced585d11f0424fa9/Esai%20Cs1.6%E4%B8%AD%E6%96%87%E7%89%88(3248).zip" target="_blank" class="btn-dl">⬇ <span data-i18n="downloadBtn">下载</span></a>
+                                <span class="dl-meta">ESAI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 个人定制版 6个 → 3-3 排列 -->
+                <div class="collection">
+                    <div class="collection-title" data-i18n="customTitle">◈ 个人定制版 <span class="count">6 个版本</span></div>
+                    <div class="collection-grid-6">
+                        <div class="version-card">
+                            <div>
+                                <div class="v-header"><span class="v-name" data-i18n="vOkgName">Okgogogo 增强版</span><span class="v-ver">3647</span></div>
+                                <div class="v-desc" data-i18n="vOkgDesc">普及率最高 · 集成插件</div>
+                                <span class="v-tag" data-i18n="vOkgTag"># 国民版本</span>
+                            </div>
+                            <div class="dl-row">
+                                <a href="https://github.com/ZYWind-ZYWPE/csbox/raw/2bd6c327d95f6ec8ae9e5afced585d11f0424fa9/Cs1.6Okgogogo%E5%A2%9E%E5%BC%BA%E6%99%AE%E5%8F%8A%E7%89%883647.zip" target="_blank" class="btn-dl">⬇ <span data-i18n="downloadBtn">下载</span></a>
+                                <span class="dl-meta">3647</span>
+                            </div>
+                        </div>
+                        <div class="version-card">
+                            <div>
+                                <div class="v-header"><span class="v-name" data-i18n="vDcooName">DCOO 迪酷</span><span class="v-ver">3266</span></div>
+                                <div class="v-desc" data-i18n="vDcooDesc">迪酷经典 · 平台整合</div>
+                                <span class="v-tag" data-i18n="vDcooTag"># 平台版</span>
+                            </div>
+                            <div class="dl-row">
+                                <a href="https://github.com/ZYWind-ZYWPE/csbox/raw/2bd6c327d95f6ec8ae9e5afced585d11f0424fa9/Dcoo_CS1.6_3266.zip" target="_blank" class="btn-dl">⬇ <span data-i18n="downloadBtn">下载</span></a>
+                                <span class="dl-meta">3266</span>
+                            </div>
+                        </div>
+                        <div class="version-card">
+                            <div>
+                                <div class="v-header"><span class="v-name" data-i18n="vWcgName">WCG 2010 中国区</span><span class="v-ver">4554</span></div>
+                                <div class="v-desc" data-i18n="vWcgDesc">WCG赛场 · 职业选手同款</div>
+                                <span class="v-tag" data-i18n="vWcgTag"># 赛事标准</span>
+                            </div>
+                            <div class="dl-row">
+                                <a href="https://github.com/ZYWind-ZYWPE/csbox/raw/2bd6c327d95f6ec8ae9e5afced585d11f0424fa9/WCG_2010_%E4%B8%AD%E5%9B%BD%E5%8C%BA%E8%B5%9B%E5%9C%BA%E4%BD%BF%E7%94%A8%E7%9A%84%E7%89%88%E6%9C%AC%EF%BC%884554%E7%A0%B4%E8%A7%A3%E7%89%88%EF%BC%89.zip" target="_blank" class="btn-dl">⬇ <span data-i18n="downloadBtn">下载</span></a>
+                                <span class="dl-meta">4554</span>
+                            </div>
+                        </div>
+                        <div class="version-card">
+                            <div>
+                                <div class="v-header"><span class="v-name" data-i18n="vTufName">突飞 TUF</span><span class="v-ver">3266</span></div>
+                                <div class="v-desc" data-i18n="vTufDesc">高帧率优化 · 战队版</div>
+                                <span class="v-tag" data-i18n="vTufTag"># 网吧神版</span>
+                            </div>
+                            <div class="dl-row">
+                                <a href="https://github.com/ZYWind-ZYWPE/csbox/raw/2bd6c327d95f6ec8ae9e5afced585d11f0424fa9/%E7%AA%81%E9%A3%9ECS1.6%EF%BC%883266%EF%BC%89%E6%88%98%E9%98%9F%E7%89%88.zip" target="_blank" class="btn-dl">⬇ <span data-i18n="downloadBtn">下载</span></a>
+                                <span class="dl-meta">3266</span>
+                            </div>
+                        </div>
+                        <div class="version-card">
+                            <div>
+                                <div class="v-header"><span class="v-name" data-i18n="vSimenName">赛盟 SIMEN</span><span class="v-ver">4554</span></div>
+                                <div class="v-desc" data-i18n="vSimenDesc">KZ跳跃专用 · 身法极限</div>
+                                <span class="v-tag" data-i18n="vSimenTag"># 跳跃服</span>
+                            </div>
+                            <div class="dl-row">
+                                <a href="https://github.com/ZYWind-ZYWPE/csbox/raw/2bd6c327d95f6ec8ae9e5afced585d11f0424fa9/%E8%B5%9B%E7%9B%9Fcs1.6_4554%EF%BC%88KZ1.2%EF%BC%89.zip" target="_blank" class="btn-dl">⬇ <span data-i18n="downloadBtn">下载</span></a>
+                                <span class="dl-meta">4554</span>
+                            </div>
+                        </div>
+                        <div class="version-card">
+                            <div>
+                                <div class="v-header"><span class="v-name" data-i18n="vYfName">叶风超级纯净版</span><span class="v-ver">v1.6</span></div>
+                                <div class="v-desc" data-i18n="vYfDesc">极致纯净 · 无第三方插件</div>
+                                <span class="v-tag" data-i18n="vYfTag"># 原教旨</span>
+                            </div>
+                            <div class="dl-row">
+                                <a href="https://github.com/ZYWind-ZYWPE/csbox/raw/2bd6c327d95f6ec8ae9e5afced585d11f0424fa9/%E5%8F%B6%E9%A3%8E%E8%B6%85%E7%BA%A7%E7%BA%AF%E5%87%80%E7%89%88cs1.6.zip" target="_blank" class="btn-dl">⬇ <span data-i18n="downloadBtn">下载</span></a>
+                                <span class="dl-meta">纯净</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 3: Map Guide -->
+        <div class="section-block" id="maps">
+            <div class="block-header">
+                <h2 data-i18n="mapTitle">地图玩法详解</h2>
+                <span class="badge" data-i18n="mapBadge">5 种模式</span>
+            </div>
+            <div class="block-body">
+                <div class="map-guide-grid">
+                    <div class="map-guide-card">
+                        <div class="mode-icon">💣 de_系列地图</div>
+                        <div class="mode-name" data-i18n="mapMode1Name">爆破模式</div>
+                        <div class="mode-desc" data-i18n="mapMode1Desc"><strong>T</strong> 安放C4 · <strong>CT</strong> 拆除</div>
+                        <div class="mode-maps"><span>dust2</span><span>inferno</span><span>nuke</span><span>train</span></div>
+                    </div>
+                    <div class="map-guide-card">
+                        <div class="mode-icon">👤 cs_系列地图</div>
+                        <div class="mode-name" data-i18n="mapMode2Name">人质模式</div>
+                        <div class="mode-desc" data-i18n="mapMode2Desc"><strong>CT</strong> 营救人质 · <strong>T</strong> 防守</div>
+                        <div class="mode-maps"><span>assault</span><span>office</span><span>militia</span></div>
+                    </div>
+                    <div class="map-guide-card">
+                        <div class="mode-icon">🕴️ as_系列地图</div>
+                        <div class="mode-name" data-i18n="mapMode3Name">暗杀 VIP</div>
+                        <div class="mode-desc" data-i18n="mapMode3Desc"><strong>CT</strong> 保护VIP · <strong>T</strong> 击杀VIP</div>
+                        <div class="mode-maps"><span>oilrig</span><span>tundra</span></div>
+                    </div>
+                    <div class="map-guide-card">
+                        <div class="mode-icon">🏃 es_系列地图</div>
+                        <div class="mode-name" data-i18n="mapMode4Name">逃亡模式</div>
+                        <div class="mode-desc" data-i18n="mapMode4Desc"><strong>T</strong> 逃脱 · <strong>CT</strong> 拦截</div>
+                        <div class="mode-maps"><span>escape</span><span>subzero</span></div>
+                    </div>
+                    <div class="map-guide-card">
+                        <div class="mode-icon">🔥 fy_系列地图</div>
+                        <div class="mode-name" data-i18n="mapMode5Name">火拼模式</div>
+                        <div class="mode-desc" data-i18n="mapMode5Desc">快节奏死斗 · 无目标</div>
+                        <div class="mode-maps"><span>iceworld</span><span>pool_day</span><span>snow</span></div>
+                    </div>
+                    <div class="map-guide-card highlight-card">
+                        <div class="mode-icon">🏆 经典</div>
+                        <div class="mode-name" data-i18n="mapMode6Name">赛事地图池</div>
+                        <div class="mode-desc" data-i18n="mapMode6Desc">WCG / CPL 指定地图</div>
+                        <div class="mode-maps"><span>dust2</span><span>inferno</span><span>nuke</span><span>train</span></div>
+                    </div>
+                </div>
+                <div class="map-quote">
+                    <p data-i18n="mapQuote">"Dust2 的三角攻防结构堪称电子竞技的蒙德里安画作。" — CPL 赛事总监</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 4: Companion Files -->
+        <div class="section-block" id="resources">
+            <div class="block-header">
+                <h2 data-i18n="resourceTitle">配套文件 & 使用指南</h2>
+                <span class="badge" data-i18n="resourceBadge">3 个资源</span>
+            </div>
+            <div class="block-body">
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div>
+                            <div class="r-name" data-i18n="rAmxName">🔌 AMX Mod X</div>
+                            <div class="r-desc" data-i18n="rAmxDesc">插件运行环境 · 海量支持</div>
+                            <span class="r-tag" data-i18n="rAmxTag">★ 官方源</span>
+                        </div>
+                        <div class="dl-row">
+                            <a href="https://www.amxmodx.org" target="_blank" class="btn-dl">⬇ <span data-i18n="visitBtn">访问</span></a>
+                            <span class="dl-meta">amxmodx.org</span>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div>
+                            <div class="r-name" data-i18n="rMapName">🗺️ 地图下载</div>
+                            <div class="r-desc" data-i18n="rMapDesc">300+ 经典 · 跳跃 · 趣味</div>
+                            <span class="r-tag" data-i18n="rMapTag"># 地图合集</span>
+                        </div>
+                        <div class="dl-row">
+                            <a href="https://tsarvar.com/en/maps/counter-strike-1.6" target="_blank" class="btn-dl">⬇ <span data-i18n="browseBtn">浏览</span></a>
+                            <span class="dl-meta">tsarvar.com</span>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div>
+                            <div class="r-name" data-i18n="rSkinName">🎨 皮肤模组</div>
+                            <div class="r-desc" data-i18n="rSkinDesc">武器 · 人物 · 界面主题</div>
+                            <span class="r-tag" data-i18n="rSkinTag"># 自定义</span>
+                        </div>
+                        <div class="dl-row">
+                            <a href="https://www.gamemodd.com/cs/" target="_blank" class="btn-dl">⬇ <span data-i18n="browseBtn">浏览</span></a>
+                            <span class="dl-meta">gamemodd.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 大字使用指南 -->
+                <div class="install-guide-box">
+                    <div class="guide-title">📖 如何使用配套文件</div>
+                    <div class="guide-steps">
+                        <div class="step">
+        
+                            <span class="step-text"><strong>地图安装：</strong>将 <code>.bsp</code> 放入 <code>cstrike/maps</code></span>
+                        </div>
+                        <div class="step">
+                        
+                            <span class="step-text"><strong>皮肤安装：</strong><code>.mdl</code> → <code>cstrike/models</code> ｜ <code>.wad</code> → <code>cstrike</code></span>
+                        </div>
+                        <div class="step">
+                      
+                            <span class="step-text"><strong>插件安装：</strong><code>.amxx</code> → <code>addons/amxmodx/plugins</code>，在 <code>configs/plugins.ini</code> 启用</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 5: Specs & CDKEY -->
+        <div class="section-block" id="specs">
+            <div class="block-header">
+                <h2 data-i18n="specsTitle">配置要求 & CD-KEY</h2>
+                <span class="badge" data-i18n="specsBadge">点击复制</span>
+            </div>
+            <div class="block-body">
+                <div class="specs-cdkey-grid">
+                    <!-- Specs -->
+                    <div class="specs-block">
+                        <div class="spec-item">
+                            <h4 data-i18n="specMin">📌 最低配置</h4>
+                            <ul>
+                                <li data-i18n="specMin1">系统：Windows 7 / 10 / 11</li>
+                                <li data-i18n="specMin2">CPU：1.7 GHz 单核</li>
+                                <li data-i18n="specMin3">内存：512 MB</li>
+                                <li data-i18n="specMin4">显卡：DirectX 8.1 兼容</li>
+                                <li data-i18n="specMin5">存储：~500 MB</li>
+                            </ul>
+                        </div>
+                        <div class="spec-item">
+                            <h4 data-i18n="specRec">🚀 推荐配置</h4>
+                            <ul>
+                                <li data-i18n="specRec1">系统：Windows 10 / 11</li>
+                                <li data-i18n="specRec2">CPU：2.4 GHz 双核</li>
+                                <li data-i18n="specRec3">内存：1 GB</li>
+                                <li data-i18n="specRec4">显卡：DirectX 9.0c 兼容</li>
+                                <li data-i18n="specRec5">存储：~500 MB</li>
+                            </ul>
+                        </div>
+                        <div class="spec-item" style="margin-bottom:0;">
+                            <h4 data-i18n="specInfo">🎯 游戏信息</h4>
+                            <ul>
+                                <li data-i18n="specInfo1">引擎：GoldSrc</li>
+                                <li data-i18n="specInfo2">发行日期：2003.09.12</li>
+                                <li data-i18n="specInfo3">最大玩家：32 人</li>
+                                <li data-i18n="specInfo4">模式：爆破 / 人质 / VIP</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- CDKEY -->
+                    <div class="cdkey-section">
+                        <div class="cdkey-label" data-i18n="cdkeyLabel">经典 CD-KEY（点击复制）</div>
+                        <div class="cdkey-row">
+                            <span class="cdkey-item" onclick="copyCDKEY(this, '5522H-HY5KC-VL6QQ-IGCHV-YJP2H')">
+                                <span class="cdkey-blur">5522H-HY5KC-VL6QQ-IGCHV-YJP2H</span>
+                                <span class="copy-hint">📄 复制</span>
+                                <span class="copied-feedback">✅ 已复制</span>
+                            </span>
+                            <span class="cdkey-item" onclick="copyCDKEY(this, '56RP8-4WYL5-49PQQ-59H92-Q3GKC')">
+                                <span class="cdkey-blur">56RP8-4WYL5-49PQQ-59H92-Q3GKC</span>
+                                <span class="copy-hint">📄 复制</span>
+                                <span class="copied-feedback">✅ 已复制</span>
+                            </span>
+                            <span class="cdkey-item" onclick="copyCDKEY(this, '547PV-RAE7Z-4XS5R-MMAPJ-I6AC3')">
+                                <span class="cdkey-blur">547PV-RAE7Z-4XS5R-MMAPJ-I6AC3</span>
+                                <span class="copy-hint">📄 复制</span>
+                                <span class="copied-feedback">✅ 已复制</span>
+                            </span>
+                        </div>
+                        <div class="cdkey-hint" data-i18n="cdkeyHint">💡 点击任意 CD-KEY 自动复制完整密钥</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Footer ===== -->
+        <footer class="footer">
+            <p data-i18n="footer1">🔹 本页面仅供怀旧与学习 · 资源来自互联网 · 请于24小时内删除</p>
+            <p style="margin-top:2px;" data-i18n="footer2">经典永不褪色 · 致敬热血青春 · <a href="#top">回到顶部</a></p>
+            <p style="margin-top:4px; font-size:0.55rem; opacity:0.5;" data-i18n="footer3">Counter-Strike 1.6 © Valve Corporation · CSBOX 非官方爱好者站点</p>
+        </footer>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- JavaScript -->
+    <script>
+        // ===== CDKEY Copy =====
+        function copyCDKEY(element, key) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(key).then(() => {
+                    element.classList.add('copied');
+                    setTimeout(() => {
+                        element.classList.remove('copied');
+                    }, 2000);
+                }).catch(() => {
+                    fallbackCopy(key, element);
+                });
+            } else {
+                fallbackCopy(key, element);
+            }
+        }
+
+        function fallbackCopy(text, element) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                element.classList.add('copied');
+                setTimeout(() => {
+                    element.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                alert('复制失败，请手动复制。');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // ===== Theme Toggle =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeLabel = document.getElementById('themeLabel');
+        let currentTheme = localStorage.getItem('csbox-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeUI(currentTheme);
+
+        themeToggle.addEventListener('click', function() {
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            currentTheme = newTheme;
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('csbox-theme', newTheme);
+            updateThemeUI(newTheme);
+        });
+
+        function updateThemeUI(theme) {
+            if (theme === 'light') {
+                themeToggle.textContent = '☀️';
+                themeLabel.textContent = '☀️ 浅色';
+            } else {
+                themeToggle.textContent = '🌙';
+                themeLabel.textContent = '🌙 深色';
+            }
+        }
+
+        // ===== Language Toggle =====
+        const translations = {
+            zh: {
+                brand: 'CSBOX<span> · 直链下载</span>',
+                heroBadge: '⚡ <span class="highlight">直链下载</span> · 无需注册 · 无需登录',
+                heroSubtitle: 'CS1.6 一站式直链下载平台',
+                heroFeature: '9 个经典版本 · 即点即下',
+                heroBtn: '⬇ 进入下载板块',
+                stat1num: '9',
+                stat1label: '经典版本',
+                stat2num: '300+',
+                stat2label: '地图合集',
+                stat3num: '100+',
+                stat3label: '插件库',
+                stat4num: '2026',
+                stat4label: '重温经典',
+                scrollHint: '▼ 向下探索 ▼',
+                navAbout: '关于',
+                navDownload: '下载',
+                navMaps: '地图',
+                navResource: '配套',
+                navSpecs: '配置',
+                aboutTitle: '关于 CS1.6',
+                aboutBadge: '2003 – 2026',
+                aboutP1: '<strong>Counter-Strike 1.6</strong> 是 Valve 于 2003 年 9 月 12 日正式发行的第一人称射击游戏，从《半条命》MOD 成长为独立的电竞传奇。它定义了战术射击游戏的黄金标准——<strong>精密的枪械弹道、极致的经济博弈、经典的 5v5 爆破模式</strong>，成为全球数亿玩家的青春记忆。',
+                aboutHighlight: '⚡ 1.6 版本修复了空中开镜 BUG，新增 FAMAS / Galil / 防暴盾，调整 AWP 开镜速度，极大增强了竞技公平性，成为全球赛事的统一标准。',
+                aboutP2: '💡 即使在今天，CS1.6 依然拥有庞大的玩家社区和活跃的赛事生态，是 FPS 游戏史上不可磨灭的丰碑。',
+                esportsTitle: '电竞丰碑',
+                esports1: '2005 WEG 冠军',
+                esports2: '2009 六冠王',
+                esports3: 'WCG 三冠王',
+                esports4: '2010 统治级',
+                esports5: '亚洲之光',
+                statYear: '2003',
+                statYearLabel: '正式发行',
+                statYearSub: '独立于《半条命》',
+                statMaps: '16',
+                statMapsLabel: '官方地图',
+                statMapsSub: '+ 数百张社区图',
+                statChars: '8',
+                statCharsLabel: 'CT / T 角色',
+                statCharsSub: '各具特色',
+                statMoney: '2026',
+                statMoneyLabel: '重温经典',
+                statMoneySub: '再现当年辉煌',
+                mapTitle: '地图玩法详解',
+                mapBadge: '5 种模式',
+                mapMode1Name: '爆破模式',
+                mapMode1Desc: '<strong>T</strong> 安放C4 · <strong>CT</strong> 拆除',
+                mapMode2Name: '人质模式',
+                mapMode2Desc: '<strong>CT</strong> 营救人质 · <strong>T</strong> 防守',
+                mapMode3Name: '暗杀 VIP',
+                mapMode3Desc: '<strong>CT</strong> 保护VIP · <strong>T</strong> 击杀VIP',
+                mapMode4Name: '逃亡模式',
+                mapMode4Desc: '<strong>T</strong> 逃脱 · <strong>CT</strong> 拦截',
+                mapMode5Name: '火拼模式',
+                mapMode5Desc: '快节奏死斗 · 无目标',
+                mapMode6Name: '赛事地图池',
+                mapMode6Desc: 'WCG / CPL 指定地图',
+                mapQuote: '"Dust2 的三角攻防结构堪称电子竞技的蒙德里安画作。" — CPL 赛事总监',
+                downloadTitle: '⬇ 版本下载',
+                downloadBadge: '9 个版本',
+                classicTitle: '◈ 经典版本 <span class="count">3 个版本</span>',
+                customTitle: '◈ 个人定制版 <span class="count">6 个版本</span>',
+                resourceTitle: '配套插件 & 使用指南',
+                resourceBadge: '3 个资源',
+                downloadBtn: '下载',
+                visitBtn: '访问',
+                browseBtn: '浏览',
+                vSteamName: 'Steam 英文纯净版',
+                vSteamDesc: 'Steam原生 · 带Bot · 汉化补丁',
+                vSteamTag: '★ 官方原生',
+                v5eName: '5EPlay',
+                v5eDesc: '5E平台 · 双协议 · 带Bot',
+                v5eTag: '# 平台竞技',
+                vEsaiName: '亿赛 ESAI',
+                vEsaiDesc: '比赛级稳定 · 经典纯净 · 中文',
+                vEsaiTag: '★ 最推荐',
+                vOkgName: 'Okgogogo 增强版',
+                vOkgDesc: '普及率最高 · 集成插件',
+                vOkgTag: '# 国民版本',
+                vDcooName: 'DCOO 迪酷',
+                vDcooDesc: '迪酷经典 · 平台整合',
+                vDcooTag: '# 平台版',
+                vWcgName: 'WCG 2010 中国区',
+                vWcgDesc: 'WCG赛场 · 职业选手同款',
+                vWcgTag: '# 赛事标准',
+                vTufName: '突飞 TUF',
+                vTufDesc: '高帧率优化 · 战队版',
+                vTufTag: '# 网吧神版',
+                vSimenName: '赛盟 SIMEN',
+                vSimenDesc: 'KZ跳跃专用 · 身法极限',
+                vSimenTag: '# 跳跃服',
+                vYfName: '叶风超级纯净版',
+                vYfDesc: '极致纯净 · 无第三方插件',
+                vYfTag: '# 原教旨',
+                rAmxName: '🔌 AMX Mod X',
+                rAmxDesc: '插件运行环境 · 海量支持',
+                rAmxTag: '★ 官方源',
+                rMapName: '🗺️ 地图下载',
+                rMapDesc: '300+ 经典 · 跳跃 · 趣味',
+                rMapTag: '# 地图合集',
+                rSkinName: '🎨 皮肤模组',
+                rSkinDesc: '武器 · 人物 · 界面主题',
+                rSkinTag: '# 自定义',
+                specsTitle: '配置要求 & CD-KEY',
+                specsBadge: '点击复制',
+                specMin: '📌 最低配置',
+                specMin1: '系统：Windows 7 / 10 / 11',
+                specMin2: 'CPU：1.7 GHz 单核',
+                specMin3: '内存：512 MB',
+                specMin4: '显卡：DirectX 8.1 兼容',
+                specMin5: '存储：~500 MB',
+                specRec: '🚀 推荐配置',
+                specRec1: '系统：Windows 10 / 11',
+                specRec2: 'CPU：2.4 GHz 双核',
+                specRec3: '内存：1 GB',
+                specRec4: '显卡：DirectX 9.0c 兼容',
+                specRec5: '存储：~500 MB',
+                specInfo: '🎯 游戏信息',
+                specInfo1: '引擎：GoldSrc',
+                specInfo2: '发行日期：2003.09.12',
+                specInfo3: '最大玩家：32 人',
+                specInfo4: '模式：爆破 / 人质 / VIP',
+                cdkeyLabel: '🔑 经典 CD-KEY（点击复制）',
+                cdkeyHint: '💡 点击任意 CD-KEY 自动复制完整密钥',
+                footer1: '🔹 本页面仅供怀旧与学习 · 资源来自互联网 · 请于24小时内删除',
+                footer2: '经典永不褪色 · 致敬热血青春 · <a href="#top">回到顶部</a>',
+                footer3: 'Counter-Strike 1.6 © Valve Corporation · CSBOX 非官方爱好者站点'
+            },
+            en: {
+                brand: 'CSBOX<span> · Direct Download</span>',
+                heroBadge: '⚡ <span class="highlight">Direct Download</span> · No Registration · No Login',
+                heroSubtitle: 'CS1.6 One-Stop Direct Download Platform',
+                heroFeature: '9 Classic Versions · Click to Download',
+                heroBtn: '⬇ Go to Downloads',
+                stat1num: '9',
+                stat1label: 'Classic Versions',
+                stat2num: '300+',
+                stat2label: 'Map Collection',
+                stat3num: '100+',
+                stat3label: 'Plugin Library',
+                stat4num: '2026',
+                stat4label: 'Relive the Classic',
+                scrollHint: '▼ Scroll Down ▼',
+                navAbout: 'About',
+                navDownload: 'Download',
+                navMaps: 'Maps',
+                navResource: 'Resources',
+                navSpecs: 'Specs',
+                aboutTitle: 'About CS1.6',
+                aboutBadge: '2003 – 2026',
+                aboutP1: '<strong>Counter-Strike 1.6</strong> is a first-person shooter officially released by Valve on September 12, 2003. It grew from a <em>Half-Life</em> MOD into an independent esports legend, defining the golden standard of tactical shooters — <strong>precise gunplay, deep economy management, classic 5v5 bomb defusal</strong> — becoming the gaming memory of hundreds of millions of players worldwide.',
+                aboutHighlight: '⚡ Version 1.6 fixed the scope-in-air BUG, added FAMAS / Galil / Shield, adjusted AWP scope speed, greatly enhancing competitive fairness and becoming the global tournament standard.',
+                aboutP2: '💡 Even today, CS1.6 still has a massive player community and an active esports ecosystem, an indelible monument in FPS gaming history.',
+                esportsTitle: '🏅 Esports Legends',
+                esports1: '2005 WEG Champion',
+                esports2: '2009 Six-time Champion',
+                esports3: 'WCG Triple Crown',
+                esports4: '2010 Dominance',
+                esports5: 'Asian Light',
+                statYear: '2003',
+                statYearLabel: 'Official Release',
+                statYearSub: 'Independent from Half-Life',
+                statMaps: '16',
+                statMapsLabel: 'Official Maps',
+                statMapsSub: '+ Hundreds of Community Maps',
+                statChars: '8',
+                statCharsLabel: 'CT / T Characters',
+                statCharsSub: 'Unique Attributes',
+                statMoney: '2026',
+                statMoneyLabel: 'Relive the Classic',
+                statMoneySub: 'Relive the glory days',
+                mapTitle: 'Map Modes & Guide',
+                mapBadge: '5 Modes',
+                mapMode1Name: 'Bomb Defusal',
+                mapMode1Desc: '<strong>T</strong> Plant C4 · <strong>CT</strong> Defuse',
+                mapMode2Name: 'Hostage Rescue',
+                mapMode2Desc: '<strong>CT</strong> Rescue · <strong>T</strong> Defend',
+                mapMode3Name: 'VIP Assassination',
+                mapMode3Desc: '<strong>CT</strong> Protect VIP · <strong>T</strong> Kill VIP',
+                mapMode4Name: 'Escape Mode',
+                mapMode4Desc: '<strong>T</strong> Escape · <strong>CT</strong> Intercept',
+                mapMode5Name: 'Deathmatch',
+                mapMode5Desc: 'Fast-paced · No objective',
+                mapMode6Name: 'Tournament Pool',
+                mapMode6Desc: 'WCG / CPL Official Maps',
+                mapQuote: '"Dust2\'s triangular structure is the Mondrian of esports." — CPL Tournament Director',
+                downloadTitle: '⬇ Version Downloads',
+                downloadBadge: '9 Versions',
+                classicTitle: '◈ Classic Versions <span class="count">3 Versions</span>',
+                customTitle: '◈ Custom Editions <span class="count">6 Versions</span>',
+                resourceTitle: 'Companion Files & Guide',
+                resourceBadge: '3 Resources',
+                downloadBtn: 'Download',
+                visitBtn: 'Visit',
+                browseBtn: 'Browse',
+                vSteamName: 'Steam Clean English',
+                vSteamDesc: 'Steam native · with Bot · Chinese patch',
+                vSteamTag: '★ Official Native',
+                v5eName: '5EPlay',
+                v5eDesc: '5E platform · dual protocol · with Bot',
+                v5eTag: '# Platform Competitive',
+                vEsaiName: 'ESAI',
+                vEsaiDesc: 'Tournament stable · classic clean · Chinese',
+                vEsaiTag: '★ Most Recommended',
+                vOkgName: 'Okgogogo Enhanced',
+                vOkgDesc: 'Highest adoption · integrated plugins',
+                vOkgTag: '# National Edition',
+                vDcooName: 'DCOO Dicoo',
+                vDcooDesc: 'Dicoo classic · platform integrated',
+                vDcooTag: '# Platform Edition',
+                vWcgName: 'WCG 2010 China',
+                vWcgDesc: 'WCG edition · pro player version',
+                vWcgTag: '# Tournament Standard',
+                vTufName: 'TUF Turbo',
+                vTufDesc: 'High FPS · team edition',
+                vTufTag: '# Internet Cafe Edition',
+                vSimenName: 'SIMEN KZ',
+                vSimenDesc: 'KZ jump dedicated · movement mastery',
+                vSimenTag: '# Jump Server',
+                vYfName: 'Yefeng Ultra Clean',
+                vYfDesc: 'Ultra clean · no third-party plugins',
+                vYfTag: '# Purist',
+                rAmxName: '🔌 AMX Mod X',
+                rAmxDesc: 'Plugin runtime · massive support',
+                rAmxTag: '★ Official Source',
+                rMapName: '🗺️ Map Download',
+                rMapDesc: '300+ classic · jump · fun',
+                rMapTag: '# Map Collection',
+                rSkinName: '🎨 Skin Mods',
+                rSkinDesc: 'Weapons · characters · UI',
+                rSkinTag: '# Customization',
+                specsTitle: 'System Requirements & CD-KEY',
+                specsBadge: 'Click to Copy',
+                specMin: '📌 Minimum Requirements',
+                specMin1: 'OS: Windows 7 / 10 / 11',
+                specMin2: 'CPU: 1.7 GHz single-core',
+                specMin3: 'RAM: 512 MB',
+                specMin4: 'GPU: DirectX 8.1 compatible',
+                specMin5: 'Storage: ~500 MB',
+                specRec: '🚀 Recommended Requirements',
+                specRec1: 'OS: Windows 10 / 11',
+                specRec2: 'CPU: 2.4 GHz dual-core',
+                specRec3: 'RAM: 1 GB',
+                specRec4: 'GPU: DirectX 9.0c compatible',
+                specRec5: 'Storage: ~500 MB',
+                specInfo: '🎯 Game Info',
+                specInfo1: 'Engine: GoldSrc',
+                specInfo2: 'Release Date: 2003.09.12',
+                specInfo3: 'Max Players: 32',
+                specInfo4: 'Modes: Bomb / Hostage / VIP',
+                cdkeyLabel: '🔑 Classic CD-KEY (Click to Copy)',
+                cdkeyHint: '💡 Click any CD-KEY to copy the full key',
+                footer1: '🔹 For nostalgic & educational purposes only · Resources from the internet · Delete within 24 hours',
+                footer2: 'Classic never fades · Salute to youth · <a href="#top">Back to Top</a>',
+                footer3: 'Counter-Strike 1.6 © Valve Corporation · CSBOX Unofficial Fan Site'
+            }
+        };
+
+        let currentLang = localStorage.getItem('csbox-lang') || 'zh';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('csbox-lang', lang);
+            const texts = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (texts[key] !== undefined) {
+                    if (texts[key].includes('<')) {
+                        el.innerHTML = texts[key];
+                    } else {
+                        el.textContent = texts[key];
+                    }
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            const brandEl = document.querySelector('.nav-brand');
+            if (brandEl && texts.brand) {
+                brandEl.innerHTML = texts.brand;
+            }
+        }
+
+        document.getElementById('langZh').addEventListener('click', function() { setLanguage('zh'); });
+        document.getElementById('langEn').addEventListener('click', function() { setLanguage('en'); });
+        setLanguage(currentLang);
+
+        // ===== Intersection Observer =====
+        const sections = document.querySelectorAll('.section-block');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.08,
+            rootMargin: '0px 0px -40px 0px'
+        });
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // ===== Smooth scroll for nav links =====
+        document.querySelectorAll('.nav-links a, .footer a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // ===== Active nav link on scroll =====
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sectionsForNav = document.querySelectorAll('.section-block');
+
+        window.addEventListener('scroll', function() {
+            let current = '';
+            sectionsForNav.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
